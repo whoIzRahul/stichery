@@ -1,0 +1,38 @@
+#!/usr/bin/env sh
+
+echo '🏗️👷 Checking your code before committing...'
+
+# 0. Sync .env.example with .env structure
+echo '🔄 Syncing .env.example...'
+yarn env:sync
+if [ $? -ne 0 ]; then
+    echo '❌ env:sync failed. Please fix the error and try again.'
+    exit 1
+fi
+git add .env.example
+
+# 1. Run lint-staged on staged files (fast)
+echo '🔍 Linting and formatting staged files...'
+yarn lint-staged
+
+if [ $? -ne 0 ]; then
+    echo '❌ Lint-staged failed. Please fix the errors and try again.'
+    exit 1
+fi
+
+# 2. Type check only staged TypeScript files (fast)
+echo '🔎 Type checking staged files...'
+STAGED_TS_FILES=$(git diff --cached --name-only --diff-filter=ACMR | grep -E '\.(ts|tsx)$' || true)
+
+if [ -n "$STAGED_TS_FILES" ]; then
+    yarn type-check
+    if [ $? -ne 0 ]; then
+        echo '❌ Type check failed. Please fix TypeScript errors.'
+        exit 1
+    fi
+    echo '✅ Type check passed'
+else
+    echo '⏭️  No TypeScript files to check'
+fi
+
+echo '✅ Pre-commit checks passed! 🎉'
