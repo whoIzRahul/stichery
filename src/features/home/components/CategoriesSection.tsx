@@ -198,8 +198,8 @@ export function CategoriesSection() {
               style={{ animation: 'kenburns 8s ease-out forwards' }}
             />
             {/* Rich gradient: dark left column + bottom pool */}
-            <div className="absolute inset-0 bg-gradient-to-r from-espresso/90 via-espresso/40 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-espresso/70 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-r from-espresso/90 via-espresso/40 to-transparent dark:from-linen/90 dark:via-linen/70" />
+            <div className="absolute inset-0 bg-linear-to-t from-espresso/70 via-transparent to-transparent dark:from-linen/50" />
           </motion.div>
         </AnimatePresence>
 
@@ -332,7 +332,7 @@ export function CategoriesSection() {
       </div>
 
       {/* Image thumbnail strip */}
-      <div className="overflow-x-auto bg-espresso py-3 dark:bg-[#100b05] dark:[--color-cream:#faf7f2] [&::-webkit-scrollbar]:hidden">
+      <div className="overflow-x-auto bg-espresso py-3 dark:bg-linen [&::-webkit-scrollbar]:hidden">
         <div className="flex min-w-max items-center gap-2 px-4 sm:min-w-0 sm:justify-center sm:gap-3">
           {categories.map((c, idx) => (
             <button
@@ -342,20 +342,10 @@ export function CategoriesSection() {
               aria-label={`Go to ${c.name}`}
               className={`group relative shrink-0 overflow-hidden rounded-md transition-all duration-300 ${
                 idx === active
-                  ? 'ring-2 ring-terracotta ring-offset-1 ring-offset-espresso'
-                  : 'opacity-40 hover:opacity-75'
+                  ? 'ring-3 ring-amber ring-offset-2 ring-offset-espresso'
+                  : 'opacity-40 hover:opacity-75 ring-2 ring-sand ring-offset-1 ring-offset-sand dark:ring-amber'
               }`}
-            >
-              <Image src={c.image} alt={c.name} fill className="object-cover" sizes="76px" />
-              {/* Dark overlay for inactive */}
-              {idx !== active && (
-                <div className="absolute inset-0 bg-espresso/30 transition-opacity duration-200 group-hover:bg-espresso/10" />
-              )}
-              {/* Category name label */}
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-espresso/80 to-transparent px-1.5 pb-1 pt-2">
-                <p className="truncate font-ui text-[8px] text-cream/80 leading-tight">{c.name}</p>
-              </div>
-            </button>
+            ></button>
           ))}
         </div>
       </div>
