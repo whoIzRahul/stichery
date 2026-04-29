@@ -71,12 +71,7 @@ function CrochetHookDecor() {
 
 export function NewsletterSection() {
   const [email, setEmail] = useState('');
-  const [submitted, setSubmitted] = useState(false);
-
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    if (email.trim()) setSubmitted(true);
-  }
+  const [submitted] = useState(false);
 
   return (
     <section className="relative overflow-hidden bg-espresso py-20 lg:py-28 dark:bg-[#100b05] dark:[--color-cream:#faf7f2] dark:[--color-espresso:#2c1a1a]">
@@ -200,7 +195,7 @@ export function NewsletterSection() {
               </p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+            <form className="flex flex-col gap-5">
               {/* Bottom-border only input — handwritten feel */}
               <div className="relative">
                 <input
