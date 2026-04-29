@@ -9,7 +9,67 @@
   scroll-behavior: smooth;
 }
 
+/* ─── Midnight Atelier — dark palette ────────────────────────────────────────
+   Deep warm mahogany tones. Not cold grey — the darkness of a candlelit workshop.
+────────────────────────────────────────────────────────────────────────────── */
+.dark {
+  --color-cream: #1e1208;
+  --color-linen: #281a0e;
+  --color-sand: #3c2a1a;
+  --color-warm-gray: #9a8878;
+  --color-espresso: #f0e4cc;
+  --color-mocha: #c8906a;
+  --color-terracotta: #d97060;
+  --color-sage: #7eae74;
+  --color-rose: #d49070;
+  --color-amber: #dba83c;
+}
+
+/* Smooth color transitions on theme switch */
+html {
+  transition: background-color 300ms ease;
+}
+
+*,
+*::before,
+*::after {
+  transition-property: background-color, border-color, box-shadow;
+  transition-duration: 250ms;
+  transition-timing-function: ease;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes kenburns {
+  from {
+    transform: scale(1) translate(0, 0);
+  }
+  to {
+    transform: scale(1.07) translate(-1.5%, -1%);
+  }
+}
+
 @theme {
-  --color-dark: #202938;
-  --color-light: #f5f5f5;
+  /* === Warm Loom Color Palette === */
+  --color-cream: #faf7f2;
+  --color-linen: #f2ebe0;
+  --color-mocha: #8b5e52;
+  --color-rose: #d4927a;
+  --color-terracotta: #c1644f;
+  --color-sage: #a3b89a;
+  --color-espresso: #2c1a1a;
+  --color-warm-gray: #7a6a63;
+  --color-sand: #e0d5c8;
+  --color-amber: #d4a447;
+
+  /* === Typography === */
+  --font-display: var(--font-playfair);
+  --font-heading: var(--font-cormorant);
+  --font-body: var(--font-dm-sans);
+  --font-ui: var(--font-nunito);
+  --font-mono: var(--font-jetbrains);
 }

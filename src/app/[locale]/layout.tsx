@@ -1,17 +1,49 @@
 import type { Metadata } from 'next';
 import '@/styles/globals.css';
-import { Livvic } from 'next/font/google';
+import {
+  Cormorant_Garamond,
+  DM_Sans,
+  JetBrains_Mono,
+  Nunito,
+  Playfair_Display,
+} from 'next/font/google';
 import { notFound } from 'next/navigation';
 import { hasLocale } from 'next-intl';
 import { getMessages, getTimeZone, setRequestLocale } from 'next-intl/server';
+import { NavigationResetKey } from '@/components/common';
+import { CartSidebar } from '@/features/cart';
 import { routing } from '@/i18n/routing';
 import { APP_NAME, APP_URL } from '@/lib/config/seo';
 import { RootProvider } from '@/providers';
 
-const livvic = Livvic({
+const playfair = Playfair_Display({
   subsets: ['latin'],
-  variable: '--font-livvic',
-  weight: ['100', '200', '300', '400', '500', '600', '700', '900'],
+  variable: '--font-playfair',
+  display: 'swap',
+});
+
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin'],
+  variable: '--font-cormorant',
+  weight: ['300', '400', '500', '600', '700'],
+  display: 'swap',
+});
+
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  variable: '--font-dm-sans',
+  display: 'swap',
+});
+
+const nunito = Nunito({
+  subsets: ['latin'],
+  variable: '--font-nunito',
+  display: 'swap',
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-jetbrains',
   display: 'swap',
 });
 
@@ -21,7 +53,7 @@ export const metadata: Metadata = {
     default: APP_NAME,
     template: `%s | ${APP_NAME}`,
   },
-  description: 'Starter template for Next.js projects with TypeScript and Tailwind CSS',
+  description: 'Handcrafted crochet products — flowers, accessories, yarn, and more.',
   openGraph: {
     type: 'website',
     siteName: APP_NAME,
@@ -60,11 +92,20 @@ export default async function RootLayout({
 
   const [messages, timeZone] = await Promise.all([getMessages(), getTimeZone()]);
 
+  const fontVariables = [
+    playfair.variable,
+    cormorant.variable,
+    dmSans.variable,
+    nunito.variable,
+    jetbrainsMono.variable,
+  ].join(' ');
+
   return (
     <html lang={locale} suppressHydrationWarning={true}>
-      <body className={`${livvic.variable} bg-light antialiased dark:bg-dark`}>
+      <body className={`${fontVariables} bg-cream font-body text-espresso antialiased`}>
         <RootProvider locale={locale} messages={messages} timeZone={timeZone}>
-          {children}
+          <NavigationResetKey>{children}</NavigationResetKey>
+          <CartSidebar />
         </RootProvider>
       </body>
     </html>

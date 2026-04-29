@@ -1,0 +1,9 @@
+export { AnnouncementBar } from './components/AnnouncementBar';
+export { CategoriesSection } from './components/CategoriesSection';
+export { FeaturedSection } from './components/FeaturedSection';
+export { Footer } from './components/Footer';
+export { HeroBanner } from './components/HeroBanner';
+export { Navbar } from './components/Navbar';
+export { NewsletterSection } from './components/NewsletterSection';
+export { PopularProducts } from './components/PopularProducts';
+export { Testimonials } from './components/Testimonials';

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { env } from '@/lib/env';
 
 const APP_URL = env.NEXT_PUBLIC_APP_URL;
-const APP_NAME = 'Nextjs Starter';
+const APP_NAME = 'Crocheter';
 
 type SEOParams = {
   title: string;

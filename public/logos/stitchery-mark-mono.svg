@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Stitchery mark">
+  <g fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="80" cy="70" rx="34" ry="22" transform="rotate(-22 80 70)"></ellipse>
+    <ellipse cx="120" cy="120" rx="34" ry="22"></ellipse>
+    <ellipse cx="160" cy="170" rx="34" ry="22" transform="rotate(-22 160 170)"></ellipse>
+  </g>
+  <circle cx="190" cy="190" r="9" fill="currentColor"></circle>
+</svg>

@@ -1,12 +1,120 @@
 {
   "App": {
-    "title": "Nextjs Starter",
-    "description": "A starter template for Next.js with i18n support."
+    "title": "Crocheter",
+    "description": "Handcrafted crochet products — flowers, accessories, yarn, and more."
+  },
+  "Nav": {
+    "home": "Home",
+    "products": "Products",
+    "cart": "Cart",
+    "wishlist": "Wishlist",
+    "orders": "My Orders",
+    "profile": "Profile",
+    "login": "Login",
+    "logout": "Logout",
+    "register": "Sign Up"
+  },
+  "Auth": {
+    "login": "Login",
+    "register": "Create Account",
+    "forgotPassword": "Forgot Password",
+    "resetPassword": "Reset Password",
+    "verifyEmail": "Verify Email",
+    "emailLabel": "Email",
+    "passwordLabel": "Password",
+    "nameLabel": "Full Name",
+    "rememberMe": "Remember me",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "orContinueWith": "Or continue with"
+  },
+  "Product": {
+    "addToCart": "Add to Cart",
+    "buyNow": "Buy Now",
+    "addToWishlist": "Add to Wishlist",
+    "removeFromWishlist": "Remove from Wishlist",
+    "inStock": "In Stock",
+    "outOfStock": "Out of Stock",
+    "preOrder": "Pre-order",
+    "onlyLeft": "Only {count} left",
+    "newLabel": "New",
+    "saleLabel": "Sale",
+    "handmadeLabel": "Handmade",
+    "limitedLabel": "Limited Edition",
+    "relatedProducts": "You May Also Like",
+    "reviews": "Reviews"
+  },
+  "Cart": {
+    "title": "Shopping Cart",
+    "empty": "Your cart is empty",
+    "continueShopping": "Continue Shopping",
+    "checkout": "Proceed to Checkout",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "discount": "Discount",
+    "total": "Total",
+    "promoCode": "Promo Code",
+    "applyCode": "Apply",
+    "saveForLater": "Save for Later",
+    "remove": "Remove"
+  },
+  "Checkout": {
+    "title": "Checkout",
+    "address": "Delivery Address",
+    "shipping": "Shipping Method",
+    "payment": "Payment",
+    "review": "Review Order",
+    "placeOrder": "Place Order",
+    "orderConfirmed": "Order Confirmed!"
+  },
+  "Orders": {
+    "title": "My Orders",
+    "noOrders": "No orders yet",
+    "status": {
+      "placed": "Placed",
+      "processing": "Processing",
+      "shipped": "Shipped",
+      "outForDelivery": "Out for Delivery",
+      "delivered": "Delivered",
+      "cancelled": "Cancelled"
+    },
+    "cancel": "Cancel Order",
+    "reorder": "Reorder",
+    "downloadInvoice": "Download Invoice"
+  },
+  "Wishlist": {
+    "title": "Wishlist",
+    "empty": "Your wishlist is empty",
+    "moveToCart": "Move to Cart",
+    "shareWishlist": "Share Wishlist"
+  },
+  "Profile": {
+    "title": "My Profile",
+    "addresses": "Addresses",
+    "changePassword": "Change Password",
+    "notifications": "Notification Preferences",
+    "deleteAccount": "Delete Account"
   },
   "Count": {
     "increment": "Increment",
     "decrement": "Decrement",
     "reset": "Reset",
     "currentCount": "Current Count: {count}"
+  },
+  "Common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "retry": "Try Again",
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "confirm": "Confirm",
+    "back": "Back",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "viewAll": "View All",
+    "noResults": "No results found"
   }
 }

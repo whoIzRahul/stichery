@@ -5,6 +5,12 @@ import { isProduction } from './src/lib/config/constants';
 const nextConfig: NextConfig = {
   output: isProduction ? 'standalone' : undefined,
   reactCompiler: true,
+  images: {
+    remotePatterns: [
+      { protocol: 'https', hostname: 'images.unsplash.com' },
+      { protocol: 'https', hostname: 'plus.unsplash.com' },
+    ],
+  },
   headers: async () => {
     return [
       {

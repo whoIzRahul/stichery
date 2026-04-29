@@ -1,6 +1,16 @@
 import type { Metadata } from 'next';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { Counter } from '@/features/counter';
+import { setRequestLocale } from 'next-intl/server';
+import {
+  AnnouncementBar,
+  CategoriesSection,
+  FeaturedSection,
+  Footer,
+  HeroBanner,
+  Navbar,
+  NewsletterSection,
+  PopularProducts,
+  Testimonials,
+} from '@/features/home';
 import { generateSEOMetadata } from '@/lib/config/seo';
 import type { SupportedLocale } from '@/types/i18n';
 
@@ -10,14 +20,12 @@ type Props = {
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const locale = (await props.params).locale as SupportedLocale;
-  const t = await getTranslations({
-    locale,
-    namespace: 'App',
-  });
+  void locale;
 
   return generateSEOMetadata({
-    title: t('title'),
-    description: t('description'),
+    title: 'Stitchery — Handmade Crochet Shop',
+    description:
+      'Discover unique handcrafted crochet creations — flowers, blankets, bags, key rings, and more. Made with love, shipped across Nepal.',
     path: '/',
   });
 }
@@ -26,14 +34,19 @@ export default async function Home(props: Props) {
   const locale = (await props.params).locale as SupportedLocale;
   setRequestLocale(locale);
 
-  const t = await getTranslations('App');
-
   return (
-    <div className="flex h-screen w-screen items-center justify-center">
-      <div className="flex flex-col items-center gap-6">
-        <div className="font-bold text-2xl">{t('title')}</div>
-        <Counter />
-      </div>
+    <div className="flex min-h-screen flex-col">
+      <AnnouncementBar />
+      <Navbar />
+      <main className="flex-1">
+        <HeroBanner />
+        <CategoriesSection />
+        <PopularProducts />
+        <FeaturedSection />
+        <Testimonials />
+        <NewsletterSection />
+      </main>
+      <Footer />
     </div>
   );
 }

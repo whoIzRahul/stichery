@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 240" role="img" aria-label="Stitchery wordmark — dark mode, transparent">
+  <title>Stitchery wordmark — dark mode on transparent</title>
+  <g fill="none" stroke="#FAF7F2" stroke-width="16" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="80" cy="70" rx="34" ry="22" transform="rotate(-22 80 70)"></ellipse>
+    <ellipse cx="120" cy="120" rx="34" ry="22"></ellipse>
+    <ellipse cx="160" cy="170" rx="34" ry="22" transform="rotate(-22 160 170)"></ellipse>
+  </g>
+  <circle cx="190" cy="190" r="9" fill="#D4927A"></circle>
+  <text x="240" y="158" style="font-family:&#39;Bricolage Grotesque&#39;,system-ui,sans-serif;font-weight:800;font-size:120px;fill:#FAF7F2;letter-spacing:-3px">stitch<tspan style="fill:#D4927A;font-weight:500;font-style:italic">ery</tspan>.</text>
+  <text x="240" y="200" style="font-family:&#39;JetBrains Mono&#39;,ui-monospace,monospace;font-size:13px;fill:#A89A92;letter-spacing:14px">HANDMADE · KNOT BY KNOT</text>
+</svg>

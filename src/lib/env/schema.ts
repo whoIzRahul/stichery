@@ -35,6 +35,26 @@ export const envSchema = z.object({
   DEFAULT_LOCALE: z
     .preprocess(emptyStringToUndefined, z.string().default('en'))
     .describe('Fallback locale used when a request locale cannot be resolved.'),
+
+  NEXT_PUBLIC_ESEWA_MERCHANT_ID: z
+    .preprocess(emptyStringToUndefined, z.string().optional())
+    .describe('eSewa merchant ID for payment processing.'),
+
+  NEXT_PUBLIC_KHALTI_PUBLIC_KEY: z
+    .preprocess(emptyStringToUndefined, z.string().optional())
+    .describe('Khalti public key for payment processing.'),
+
+  NEXT_PUBLIC_CDN_URL: z
+    .preprocess(emptyStringToUndefined, z.url().optional())
+    .describe('CDN base URL for product images and media assets.'),
+
+  JWT_SECRET: z
+    .preprocess(emptyStringToUndefined, z.string().optional())
+    .describe('Secret key for signing JWT access tokens.'),
+
+  JWT_REFRESH_SECRET: z
+    .preprocess(emptyStringToUndefined, z.string().optional())
+    .describe('Secret key for signing JWT refresh tokens.'),
 });
 
 export type Env = z.infer<typeof envSchema>;

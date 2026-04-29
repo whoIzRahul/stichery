@@ -1,6 +1,39 @@
 export const AppPaths = {
   home: '/',
+
   auth: {
     login: '/auth/login',
+    register: '/auth/register',
+    forgotPassword: '/auth/forgot-password',
+    resetPassword: '/auth/reset-password',
+    verifyEmail: '/auth/verify-email',
+  },
+
+  products: {
+    list: '/products',
+    category: (slug: string) => `/products/category/${slug}`,
+    detail: (slug: string) => `/products/${slug}`,
+    search: '/products/search',
+  },
+
+  cart: '/cart',
+
+  checkout: {
+    index: '/checkout',
+    confirmation: (orderId: string) => `/checkout/confirmation/${orderId}`,
+  },
+
+  orders: {
+    list: '/orders',
+    detail: (orderId: string) => `/orders/${orderId}`,
+  },
+
+  wishlist: '/wishlist',
+
+  profile: {
+    index: '/profile',
+    addresses: '/profile/addresses',
+    notifications: '/profile/notifications',
+    changePassword: '/profile/change-password',
   },
 } as const;

@@ -13,7 +13,13 @@ type RootProviderProps = {
   preloadedState?: Partial<AppState>;
 };
 
-export const RootProvider = ({ children, locale, messages, timeZone, preloadedState }: RootProviderProps) => {
+export const RootProvider = ({
+  children,
+  locale,
+  messages,
+  timeZone,
+  preloadedState,
+}: RootProviderProps) => {
   return (
     <StoreProvider preloadedState={preloadedState}>
       <CustomThemeProvider>
