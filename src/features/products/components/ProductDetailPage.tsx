@@ -194,7 +194,10 @@ function StarRating({
   const [hovered, setHovered] = useState(0);
 
   return (
-    <div className="flex items-center gap-0.5" role={interactive ? 'radiogroup' : 'img'}>
+    <div
+      className="flex items-center gap-0.5"
+      // role={interactive ? "radiogroup" : "img"}
+    >
       {[1, 2, 3, 4, 5].map((star) => {
         const active = interactive ? hovered || rating : rating;
         const filled = active >= star;
@@ -203,11 +206,11 @@ function StarRating({
           <button
             key={star}
             type="button"
+            title={`${star}`}
             disabled={!interactive}
             onClick={() => onChange?.(star)}
             onMouseEnter={() => interactive && setHovered(star)}
             onMouseLeave={() => interactive && setHovered(0)}
-            aria-label={interactive ? `Rate ${star} star${star !== 1 ? 's' : ''}` : undefined}
             className={
               interactive ? 'cursor-pointer transition-transform hover:scale-110' : 'cursor-default'
             }
