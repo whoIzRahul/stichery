@@ -47,7 +47,11 @@ function validate(fields: Fields): FieldErrors {
 }
 
 /* ─── Password strength ───────────────────────────────────────────────────── */
-function getStrength(password: string): { score: number; label: string; color: string } {
+function getStrength(password: string): {
+  score: number;
+  label: string;
+  color: string;
+} {
   if (!password) return { score: 0, label: '', color: '' };
   let score = 0;
   if (password.length >= 8) score++;
@@ -119,12 +123,13 @@ function PasswordField({
         </label>
         <input
           id={id}
+          title={'password'}
           type={visible ? 'text' : 'password'}
           value={value}
           onChange={(e) => onChange(e.target.value)}
           onBlur={onBlur}
           autoComplete={autoComplete}
-          aria-invalid={!!error}
+          // aria-invalid={!!error}
           aria-describedby={error ? `${id}-error` : undefined}
           className={`w-full border-b bg-transparent pb-2.5 pr-10 pt-6 font-body text-sm text-espresso outline-none transition-colors duration-200 focus:border-terracotta ${
             error ? 'border-red-400' : 'border-sand dark:border-sand/30'
@@ -199,7 +204,10 @@ function Requirements({ password }: { password: string }) {
     { label: 'At least 8 characters', met: password.length >= 8 },
     { label: 'One uppercase letter', met: /[A-Z]/.test(password) },
     { label: 'One number', met: /[0-9]/.test(password) },
-    { label: 'One special character (optional)', met: /[^A-Za-z0-9]/.test(password) },
+    {
+      label: 'One special character (optional)',
+      met: /[^A-Za-z0-9]/.test(password),
+    },
   ];
 
   if (!password) return null;
@@ -275,10 +283,14 @@ export function SecurityPage() {
     return () => setTouched((prev) => ({ ...prev, [field]: true }));
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
     setSubmitted(true);
-    setTouched({ currentPassword: true, newPassword: true, confirmPassword: true });
+    setTouched({
+      currentPassword: true,
+      newPassword: true,
+      confirmPassword: true,
+    });
     if (Object.keys(errors).length > 0) return;
     setStatus('success');
     setFields({ currentPassword: '', newPassword: '', confirmPassword: '' });

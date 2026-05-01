@@ -233,7 +233,12 @@ function SuccessScreen({ onReset }: { onReset: () => void }) {
 }
 
 export function ContactPage() {
-  const [values, setValues] = useState<Fields>({ name: '', subject: '', email: '', message: '' });
+  const [values, setValues] = useState<Fields>({
+    name: '',
+    subject: '',
+    email: '',
+    message: '',
+  });
   const [touched, setTouched] = useState<Partial<Record<keyof Fields, boolean>>>({});
   const [submitted, setSubmitted] = useState(false);
 
@@ -262,7 +267,7 @@ export function ContactPage() {
     return () => setTouched((prev) => ({ ...prev, [field]: true }));
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
     setTouched({ name: true, subject: true, email: true, message: true });
     if (hasErrors) return;

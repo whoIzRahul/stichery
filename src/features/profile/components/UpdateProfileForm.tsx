@@ -288,7 +288,7 @@ export function UpdateProfileForm() {
     return () => setTouched((prev) => ({ ...prev, [field]: true }));
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
     setSubmitted(true);
     setTouched({ fullName: true, email: true, phone: true, dob: true });

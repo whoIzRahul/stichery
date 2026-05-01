@@ -297,7 +297,7 @@ function InputField({
           onBlur={onBlur}
           placeholder={hasValue ? placeholder : ''}
           autoComplete={autoComplete}
-          aria-invalid={!!error}
+          // aria-invalid={!!error}
           aria-describedby={error ? `${id}-error` : undefined}
           className={`w-full border-b bg-transparent pb-2.5 pt-6 font-body text-sm text-espresso outline-none transition-colors duration-200 placeholder:text-warm-gray/40 focus:border-terracotta ${
             error ? 'border-red-400' : 'border-sand dark:border-sand/30'
@@ -339,7 +339,7 @@ function SelectField({ id, label, value, onChange, onBlur, error, options }: Sel
           value={value}
           onChange={(e) => onChange(e.target.value)}
           onBlur={onBlur}
-          aria-invalid={!!error}
+          // aria-invalid={!!error}
           aria-describedby={error ? `${id}-error` : undefined}
           className={`w-full appearance-none border-b bg-transparent pb-2.5 pt-6 font-body text-sm outline-none transition-colors duration-200 focus:border-terracotta ${
             hasValue ? 'text-espresso' : 'text-transparent'
@@ -499,7 +499,7 @@ function DefaultToggle({
     <button
       type="button"
       role="switch"
-      aria-checked={checked}
+      aria-checked={checked ? 'true' : 'false'}
       onClick={() => onChange(!checked)}
       className="flex items-center gap-3 text-left"
     >
@@ -576,7 +576,7 @@ export function AddressFormPage({ mode, addressId }: AddressFormPageProps) {
     return () => setTouched((prev) => ({ ...prev, [field]: true }));
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
     setSubmitted(true);
     setTouched({

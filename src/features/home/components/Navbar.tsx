@@ -70,7 +70,7 @@ export function Navbar() {
     return () => document.removeEventListener('keydown', onKey);
   }, []);
 
-  function handleSearchSubmit(e: React.FormEvent) {
+  function handleSearchSubmit(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
     const q = searchQuery.trim();
     if (!q) return;
