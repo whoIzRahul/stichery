@@ -29,12 +29,27 @@ export const AppPaths = {
     detail: (orderId: string) => `/orders/${orderId}`,
   },
 
+  about: '/about',
+
+  contact: '/contact',
+
   wishlist: '/wishlist',
 
-  profile: {
-    index: '/profile',
-    addresses: '/profile/addresses',
-    notifications: '/profile/notifications',
-    changePassword: '/profile/change-password',
+  giftCards: '/gift-cards',
+
+  blog: {
+    list: '/blog',
+    detail: (slug: string) => `/blog/${slug}`,
+  },
+
+  dashboard: {
+    profile: '/dashboard/profile',
+    updateProfile: '/dashboard/profile/update',
+    addresses: '/dashboard/addresses',
+    addAddress: '/dashboard/addresses/add',
+    editAddress: (id: string) => `/dashboard/addresses/${id}`,
+    notifications: '/dashboard/notifications',
+    changePassword: '/dashboard/security',
+    orders: '/dashboard/orders',
   },
 } as const;

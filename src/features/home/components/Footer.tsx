@@ -31,7 +31,6 @@ const shopLinks = [
 
 const infoLinks = [
   { label: 'About Us', href: '/about' },
-  { label: 'Custom Orders', href: '/custom-orders' },
   { label: 'Gift Cards', href: '/gift-cards' },
   { label: 'Blog', href: '/blog' },
   { label: 'Careers', href: '/careers' },

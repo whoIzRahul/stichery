@@ -1,13 +1,14 @@
 'use client';
 import { useTheme } from '@teispace/next-themes';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Logo from '@/assets/logo/stitchery-wordmark.svg';
 import DarkLogo from '@/assets/logo/stitchery-wordmark-dark.svg';
 import { ThemeToggle } from '@/components/common';
 import { openSidebar, selectCartCount } from '@/features/cart';
+import { NotificationBell } from '@/features/notifications';
 import { selectWishlistCount } from '@/features/wishlist';
-import { Link } from '@/i18n/navigation';
+import { Link, useRouter } from '@/i18n/navigation';
 import { AppPaths } from '@/lib/config/app-paths';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 
@@ -39,15 +40,43 @@ const allLinks = [...leftLinks, ...rightLinks];
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const searchInputRef = useRef<HTMLInputElement>(null);
   const dispatch = useAppDispatch();
   const cartCount = useAppSelector(selectCartCount);
   const wishlistCount = useAppSelector(selectWishlistCount);
+  const router = useRouter();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  useEffect(() => {
+    if (searchOpen) {
+      setTimeout(() => searchInputRef.current?.focus(), 80);
+    } else {
+      setSearchQuery('');
+    }
+  }, [searchOpen]);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setSearchOpen(false);
+    };
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, []);
+
+  function handleSearchSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    const q = searchQuery.trim();
+    if (!q) return;
+    setSearchOpen(false);
+    router.push(`${AppPaths.products.list}?q=${encodeURIComponent(q)}`);
+  }
 
   return (
     <>
@@ -138,24 +167,47 @@ export function Navbar() {
               <div className="flex items-center gap-0.5">
                 <button
                   type="button"
-                  aria-label="Search"
-                  className="rounded-full p-2 text-warm-gray transition-colors duration-200 hover:bg-linen hover:text-terracotta"
+                  aria-label={searchOpen ? 'Close search' : 'Search'}
+                  aria-expanded={searchOpen}
+                  onClick={() => setSearchOpen((v) => !v)}
+                  className={`rounded-full p-2 transition-colors duration-200 ${
+                    searchOpen
+                      ? 'bg-linen text-terracotta'
+                      : 'text-warm-gray hover:bg-linen hover:text-terracotta'
+                  }`}
                 >
-                  <svg
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.6"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
-                  >
-                    <circle cx="11" cy="11" r="8" />
-                    <path d="m21 21-4.35-4.35" />
-                  </svg>
+                  {searchOpen ? (
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.6"
+                      strokeLinecap="round"
+                      aria-hidden="true"
+                    >
+                      <line x1="18" y1="6" x2="6" y2="18" />
+                      <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                  ) : (
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.6"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                    >
+                      <circle cx="11" cy="11" r="8" />
+                      <path d="m21 21-4.35-4.35" />
+                    </svg>
+                  )}
                 </button>
+                <NotificationBell />
                 <Link
                   href={AppPaths.wishlist}
                   aria-label={wishlistCount > 0 ? `Wishlist, ${wishlistCount} items` : 'Wishlist'}
@@ -232,6 +284,52 @@ export function Navbar() {
           </div>
         </div>
       </header>
+
+      {/* Search Bar */}
+      <div
+        className={`sticky top-14 z-40 overflow-hidden transition-all duration-300 ease-in-out ${
+          searchOpen ? 'max-h-24 opacity-100' : 'max-h-0 opacity-0'
+        } border-b border-terracotta/10 bg-cream/98 backdrop-blur-md`}
+        aria-hidden={!searchOpen}
+      >
+        <form
+          onSubmit={handleSearchSubmit}
+          className="mx-auto flex max-w-2xl items-center gap-4 px-4 py-4 sm:px-6"
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="shrink-0 text-terracotta/60"
+            aria-hidden="true"
+          >
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.35-4.35" />
+          </svg>
+          <input
+            ref={searchInputRef}
+            type="search"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search for flowers, keyrings, sweaters…"
+            className="min-w-0 flex-1 border-0 border-b border-terracotta/25 bg-transparent pb-1 font-ui text-[13px] text-espresso placeholder:text-warm-gray/50 outline-none transition-colors duration-200 focus:border-terracotta"
+            autoComplete="off"
+            tabIndex={searchOpen ? 0 : -1}
+          />
+          <button
+            type="submit"
+            disabled={!searchQuery.trim()}
+            className="shrink-0 rounded-sm bg-terracotta px-4 py-1.5 font-ui text-[11px] text-cream uppercase tracking-[0.12em] transition-colors duration-200 hover:bg-mocha disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            Go
+          </button>
+        </form>
+      </div>
 
       {/* Mobile Drawer Overlay */}
       {mobileOpen && (
